@@ -1,6 +1,6 @@
 [package]
 name = "music_notes_lib"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Phillippe Ketteniss <s6phkett@uni-bonn.de>"]
 edition = "2018"
 
