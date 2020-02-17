@@ -16,10 +16,10 @@ pub enum Note {
     Gs,
 }
 
-impl fmt::Display for Note{
+impl fmt::Display for Note {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-         write!(f, "{}", self.as_str())
-     }
+        write!(f, "{}", self.as_str())
+    }
 }
 
 impl Note {
@@ -40,8 +40,8 @@ impl Note {
             _ => Err("String couldn't be parsed"),
         }
     }
-    pub fn as_str(&self) -> &str{
-        match self{
+    pub fn as_str(&self) -> &str {
+        match self {
             Note::A => "A",
             Note::As => "A#",
             Note::B => "B",
@@ -53,7 +53,7 @@ impl Note {
             Note::F => "F",
             Note::Fs => "F#",
             Note::G => "G",
-            Note::Gs => "G#"
+            Note::Gs => "G#",
         }
     }
 
@@ -75,11 +75,11 @@ impl Note {
     }
 
     pub fn n_half_steps_up(&self, n: u32) -> Note {
-        if n == 0{
+        if n == 0 {
             return self.clone();
         }
         let mut temp_note = self.half_step_up();
-        for _ in 1..n{
+        for _ in 1..n {
             temp_note = temp_note.half_step_up();
         }
         temp_note
@@ -90,11 +90,11 @@ impl Note {
     }
 
     pub fn n_half_steps_down(&self, n: u32) -> Note {
-        if n == 0{
+        if n == 0 {
             return self.clone();
         }
         let mut temp_note = self.half_step_down();
-        for _ in 1..n{
+        for _ in 1..n {
             temp_note = temp_note.half_step_down();
         }
         temp_note
@@ -151,19 +151,19 @@ mod tests {
     }
 
     #[test]
-    fn test_n_half_steps_up(){
+    fn test_n_half_steps_up() {
         assert_eq!(Note::A.n_half_steps_up(1), Note::As);
         assert_eq!(Note::C.n_half_steps_up(5), Note::F);
         assert_eq!(Note::C.n_half_steps_up(0), Note::C);
     }
     #[test]
-    fn test_half_step_down(){
+    fn test_half_step_down() {
         assert_eq!(Note::A.half_step_down(), Note::Gs);
         assert_eq!(Note::F.half_step_down(), Note::E);
     }
 
     #[test]
-    fn test_n_half_steps_down(){
+    fn test_n_half_steps_down() {
         assert_eq!(Note::A.n_half_steps_down(1), Note::Gs);
         assert_eq!(Note::F.n_half_steps_down(5), Note::C);
         assert_eq!(Note::C.n_half_steps_down(0), Note::C);
